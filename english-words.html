@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 20px auto;
+ font-family: 'Microsoft YaHei', sans-serif;
+}
+th, td {
+ border: 1px solid #ddd;
+ padding: 12px;
+ text-align: left;
+}
+th {
+ background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+<!-- 替换这个区域的单词 -->
+<div id="data" style="display: none;">
+面包 水果 早饭 饿的 渴的 果汁 晚饭 一片 厨房 野餐 汉堡 午饭 鸡 喜欢的 我的 热狗 你的 他的 她的 它的
+</div>
+<table id="table">
+</table>
+<script>
+const COLS = 2;
+function render(){
+  const words = document.getElementById('data').innerHTML.trim().split(/\s+/g);
+  const html = [];
+  html.push('<tr>');
+  for (let i = 0; i < COLS; i++) {
+    html.push(`<th>中文释义</th><th>（默写区域）</th>`);
+  }
+  html.push('</tr>');
+
+  while (words.length) {
+    html.push('<tr>');
+    for (let i = 0; i < COLS; i++) {
+      const item = words.shift()||'';
+      html.push(`<td>${item}</td><td></td>`);
+    }
+    html.push('</tr>');
+  }
+  document.querySelector('#table').innerHTML = html.join('');
+}
+render();
+</script>
+</body>
+</html>
